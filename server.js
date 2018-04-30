@@ -1,38 +1,58 @@
-// We require/import the HTTP module
-var http = require("http");
+// Dependencies
+// ===========================================================
+var express = require("express");
 
-// =====================================================================
+var app = express();
+var PORT = 3000;
 
-// Then define the ports we want to listen to
-var PORTONE = 7000;
-var PORTTWO = 7500;
+// Data
+// ===========================================================
+var yoda = {
+  name: "Yoda",
+  role: "Jedi Master",
+  age: 900,
+  forcePoints: 2000
+};
 
-// =====================================================================
+var darthmaul = {
+  name: "Darth Maul",
+  role: "Sith Lord",
+  age: 200,
+  forcePoints: 1200
+};
 
-// We need two different functions to handle requests, one for each server.
-function handleRequestOne(request, response) {
-  response.end("You're a JavaScript mastermind!");
-}
+// Create one more data entry for the character Obi Wan Kenobi.
+// Enter any values you like for the parameters following the same format as the Yoda and Darth Maul character
+//
 
-function handleRequestTwo(request, response) {
-  response.end("JavaScript must not be your forte.");
-}
+// YOUR CODE GOES HERE
 
-// =====================================================================
+//
 
-// Create our servers
-var serverOne = http.createServer(handleRequestOne);
-var serverTwo = http.createServer(handleRequestTwo);
-
-// =====================================================================
-
-// Starting our servers
-serverOne.listen(PORTONE, function() {
-
-  // Callback triggered when server is successfully listening. Hurray!
-  console.log("Server listening on: http://localhost:" + PORTONE);
+// Routes
+// ===========================================================
+app.get("/", function(req, res) {
+  res.send("Welcome to the Star Wars Page!");
 });
 
-serverTwo.listen(PORTTWO, function() {
+app.get("/yoda", function(req, res) {
+  res.json(yoda);
+});
 
-  // Callback triggered when server is successfully listening. Hurray!
+app.get("/darthmaul", function(req, res) {
+  res.json(darthmaul);
+});
+
+// Create a new Express route that leads users to the new Obi Wan Kenobi Data
+// Follow the same format as the Yoda and Darth Maul routes
+//
+
+// YOUR CODE GOES HERE
+//
+//
+
+// Listener
+// ===========================================================
+app.listen(PORT, function() {
+  console.log("App listening on PORT " + PORT);
+});
